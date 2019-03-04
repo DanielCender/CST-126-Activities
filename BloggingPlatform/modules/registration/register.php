@@ -9,12 +9,19 @@
 
 $firstName = $lastName = $userPassword = $email = "";
 
-$user = 'root';
-$password = 'root';
-$db = 'blog';
-$host = 'localhost';
-$port = 8889;
+// Local Vars
+//$user = 'root';
+//$password = 'root';
+//$db = 'blog';
+//$host = 'localhost';
+//$port = 8889;
 
+// Prod vars
+$user = 'azure';
+$password = '6#vWHD_$';
+$db = 'blog';
+$host = '127.0.0.1';
+$port = 49585;
 
 // Open MySQL connection
 $conn = new mysqli($host, $user, $password, $db, $port);
