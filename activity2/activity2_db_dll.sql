@@ -8,21 +8,21 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema activity1
+-- Schema activity2
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema activity1
+-- Schema activity2
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `activity1` DEFAULT CHARACTER SET utf8 ;
-USE `activity1` ;
+CREATE SCHEMA IF NOT EXISTS `activity2` DEFAULT CHARACTER SET utf8 ;
+USE `activity2` ;
 
 -- -----------------------------------------------------
--- Table `activity1`.`users`
+-- Table `activity2`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `activity1`.`users` ;
+DROP TABLE IF EXISTS `activity2`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `activity1`.`users` (
+CREATE TABLE IF NOT EXISTS `activity2`.`users` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
   `FIRST_NAME` VARCHAR(100) NOT NULL,
   `LAST_NAME` VARCHAR(100) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `activity1`.`users` (
   `PASSWORD` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 
