@@ -1,7 +1,7 @@
 <?php
 /*
- * Project: activity1
- * Module Name: activity1
+ * Project: activity2
+ * Module Name: activity2
  * Author: Daniel Cender
  * Date: March 10, 2019
  * Synopsis: This exports the rows of user data as an html table.
