@@ -1,0 +1,27 @@
+<!-- 
+/*
+ * Project: CST-126-Blog-Project v.0.2
+ * Module Name: UserLogin v.0.1
+ * Author: Daniel Cender
+ * Date: March 10, 2019
+ * Synopsis: This HTML Form takes in user data and passes it off to a PHP script that authenticates users against the database.
+ */
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login to your Account</title>
+</head>
+<body>
+<h3>Login</h3>
+		<div>
+		<form action="./login.php" method="POST">
+			Email:<br /><input type="email" name="email" required/><br />
+			Password:<br /><input type="password" name="password" required/><br />
+			 <input
+				type="submit" value="Login" />
+		</form>
+		</div>
+</body>
+</html>

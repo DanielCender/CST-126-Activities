@@ -1,9 +1,9 @@
 <!-- 
 /*
- * Project: CST-126-Blog-Project v.0.1
- * Module Name: UserRegistration v.0.1
+ * Project: CST-126-Blog-Project v.0.2
+ * Module Name: UserRegistration v.0.2
  * Author: Daniel Cender
- * Date: March 3, 2019
+ * Date: March 10, 2019
  * Synopsis: This HTML file is the entry point into the blogging platform web app. It links to the other top level modules of the application.
  */
  -->
@@ -16,7 +16,8 @@
 </head>
 <body>
 <div>
-<h2><a href="modules/registration/index.php">Register</a></h2>
+<h2><a href="modules/registration/index.html">Register</a></h2>
+<h2><a href="modules/login/index.html">Login</a></h2>
 </div>
 </body>
 </html>
