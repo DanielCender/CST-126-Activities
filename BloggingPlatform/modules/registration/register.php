@@ -6,25 +6,11 @@
  * Date: March 10, 2019
  * Synopsis: This script takes user data from a registration form and attempts to create a new user in the db.
  */
-
+include "../helpers/db.php";
 $firstName = $lastName = $userPassword = $email = "";
 
-// Local Vars
-$user = 'root';
-$password = 'root';
-$db = 'blog';
-$host = 'localhost';
-$port = 8889;
-
-// Prod vars
-// $user = 'azure';
-// $password = '6#vWHD_$';
-// $db = 'blog';
-// $host = '127.0.0.1';
-// $port = 49585;
-
 // Open MySQL connection
-$conn = new mysqli($host, $user, $password, $db, $port);
+$conn = dbConnect();
 
 if($conn->connect_error) {
     echo $conn->connect_error;
@@ -39,6 +25,8 @@ $sqlInsert = "INSERT INTO User (FirstName, LastName, Email, Password) VALUES('$f
 
 if ($conn->query($sqlInsert) === TRUE) {
     echo "New user account created successfully";
+    $host  = $_SERVER['HTTP_HOST'];
+    header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html"); exit; // Redirect to login
 } else {
     echo "Error experienced: " . $sqlInsert . "<br>" . $conn->error;
 }

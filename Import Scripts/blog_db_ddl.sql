@@ -18,20 +18,74 @@ CREATE SCHEMA IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 ;
 USE `blog` ;
 
 -- -----------------------------------------------------
--- Table `blog`.`USER`
+-- Table `blog`.`blog`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `blog`.`USER` ;
+DROP TABLE IF EXISTS `blog`.`blog` ;
 
-CREATE TABLE IF NOT EXISTS `blog`.`USER` (
-  `FIRST_NAME` VARCHAR(100) NOT NULL,
-  `LAST_NAME` VARCHAR(100) NOT NULL,
-  `USER_ROLE` INT(11) NULL DEFAULT NULL,
-  `EMAIL_1` VARCHAR(100) NOT NULL,
-  `BANNED` BIT(1) NULL DEFAULT b'0')
+CREATE TABLE IF NOT EXISTS `blog`.`blog` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(100) NOT NULL,
+  `Description` VARCHAR(250) NULL DEFAULT NULL,
+  `Author` INT(11) NOT NULL,
+  `Votes` INT(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `EMAIL_1` ON `blog`.`USER` (`EMAIL_1` ASC);
+
+-- -----------------------------------------------------
+-- Table `blog`.`post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`post` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`post` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Title` VARCHAR(200) NOT NULL,
+  `Content` BLOB NOT NULL,
+  `Author` INT(11) NOT NULL,
+  `Votes` INT(11) NULL DEFAULT '0',
+  `BlogID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`role` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`role` (
+  `RoleID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`RoleID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`user` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(100) NOT NULL,
+  `LastName` VARCHAR(100) NOT NULL,
+  `Email` VARCHAR(100) NOT NULL,
+  `Password` VARCHAR(25) NOT NULL,
+  `RoleID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `user_ibfk_1`
+    FOREIGN KEY (`RoleID`)
+    REFERENCES `blog`.`role` (`RoleID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8;
+
+CREATE UNIQUE INDEX `Email` ON `blog`.`user` (`Email` ASC) VISIBLE;
+
+CREATE INDEX `user_ibfk_1` ON `blog`.`user` (`RoleID` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+html {
+	font-family: 'Arial';
+}
+
+.form_comp {
+	border-style: 'solid';
+	border-color: 'black';
+	padding: 30px;
+}
+
+.form_comp__section {
+	padding: 20px 0px 20px 0px;
+}
