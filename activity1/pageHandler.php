@@ -13,8 +13,6 @@ $password = (getenv('CLEARDB_DATABASE_PASSWORD', true) ?: getenv('CLEARDB_DATABA
 $db = (getenv('CLEARDB_DATABASE_DB', true) ?: getenv('CLEARDB_DATABASE_DB')) ?: 'blog';
 $host = (getenv('CLEARDB_DATABASE_HOST', true) ?: getenv('CLEARDB_DATABASE_HOST')) ?: 'localhost';
 
-$port = 8889;
-
 $conn = new mysqli($host, $user, $password, $db);
 
 if (empty($_POST['firstName'])) {
