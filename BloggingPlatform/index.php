@@ -18,9 +18,6 @@
 <div>
 <h2><a href="modules/registration/index.html">Register</a></h2>
 <h2><a href="modules/login/index.html">Login</a></h2>
-<h1><?php echo $_SERVER['SERVER_ADDR'];?></h1>
-<h1><?php echo $_SERVER['HTTP_HOST'];?></h1>
-<h1><?php echo $_SERVER['HTTP_USER_AGENT'];?></h1>
 </div>
 </body>
 </html>
