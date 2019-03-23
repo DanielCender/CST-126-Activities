@@ -18,6 +18,7 @@
 <h2><a href="activity1/register.html">Activity1</a></h2>
 <h2><a href="activity2/index.html">Activity2</a></h2>
 <h2><a href="activity3/index.html">Activity3</a></h2>
+<h2><a href="activity4/index.html">Activity4</a></h2>
 <h2><a href="BloggingPlatform/index.php">Blogging Platform</a></h2>
 </div>
 </body>

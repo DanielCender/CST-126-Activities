@@ -1,0 +1,30 @@
+<!-- 
+/*
+ * Project: activity4
+ * Module Name: activity4
+ * Author: Daniel Cender
+ * Date: March 23, 2019
+ * Synopsis: This HTML Form takes in user data and passes it off to a PHP script that creates new users in the db.
+ */
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Registration Form</title>
+</head>
+
+<body>
+	<div>
+		<form action="./registerHandler.php" method="POST">
+			First Name:<br /> <input type="text" name="firstName" /><br /> Last
+			Name:<br /> <input type="text" name="lastName" /><br /> Username:<br />
+			<input type="text" name="username" /><br /> Password:<br /> <input
+				type="password" name="password" /><br /> <input type="submit"
+				value="submit" />
+		</form>
+	</div>
+	<a href="index.html">Main Menu</a>
+</body>
+</html>
