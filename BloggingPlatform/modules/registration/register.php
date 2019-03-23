@@ -21,7 +21,7 @@ $lastName = htmlspecialchars($_POST["lastName"]);
 $email = htmlspecialchars($_POST["email"]);
 $userPassword = base64_encode(htmlspecialchars($_POST["password"])); // Encode password
 
-$sqlInsert = "INSERT INTO User (FirstName, LastName, Email, Password) VALUES('$firstName', '$lastName', '$email', '$userPassword')";
+$sqlInsert = "INSERT INTO user (FirstName, LastName, Email, Password) VALUES('$firstName', '$lastName', '$email', '$userPassword')";
 
 if ($conn->query($sqlInsert) === TRUE) {
     echo "New user account created successfully";

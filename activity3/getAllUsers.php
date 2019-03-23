@@ -11,7 +11,7 @@ include 'myfuncs.php';
 
 $conn = dbConnect(); // func from myfuncs.php
 
-$sqlQuery = "SELECT * FROM users";
+$sqlQuery = "SELECT * FROM activity3_users";
 
 $resultSet = $conn->query($sqlQuery);
 

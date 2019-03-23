@@ -23,7 +23,7 @@ if (empty($_POST['firstName'])) {
     // Open MySQL connection with function call
     $conn = dbConnect();
     
-    $sqlInsert = "INSERT INTO users (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES('$firstName', '$lastName', '$username', '$userPassword')";
+    $sqlInsert = "INSERT INTO activity3_users (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES('$firstName', '$lastName', '$username', '$userPassword')";
     
     if ($conn->query($sqlInsert) === TRUE) {
         echo "First Name is " . $firstName . "<br>";

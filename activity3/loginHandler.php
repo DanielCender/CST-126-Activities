@@ -13,7 +13,7 @@ $userPassword = htmlspecialchars($_POST['password']);
 
 $conn = dbConnect(); // Open connection with func call
 
-$sqlQuery = "SELECT * FROM users WHERE USERNAME = " . "'$username'" . " AND PASSWORD = " . "'$userPassword'";
+$sqlQuery = "SELECT * FROM activity3_users WHERE USERNAME = " . "'$username'" . " AND PASSWORD = " . "'$userPassword'";
 
 $result = $conn->query($sqlQuery);
 

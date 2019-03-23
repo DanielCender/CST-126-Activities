@@ -14,8 +14,6 @@ $conn = dbConnect();
 $email = htmlspecialchars($_POST['email']);
 $userPassword = base64_encode(htmlspecialchars($_POST['password'])); // Checking base64 encoding password against stored psswrd
 
-$conn = new mysqli($host, $user, $password, $db, $port);
-
 if($conn->connect_error) {
     echo "was in here";
     echo $conn->connect_error;
