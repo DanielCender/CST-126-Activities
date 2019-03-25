@@ -11,7 +11,7 @@
  <?php 
    include 'modules/helpers/session.php';
    
-   $loggedIn = getUserId();
+//    $loggedIn = getUserId();
  ?>
  
 <!DOCTYPE html>
@@ -22,7 +22,8 @@
 </head>
 <body>
 <div>
-<h2><a href="modules/post/newPost.php?userId=<?php echo $loggedIn; ?>">Create Post</a></h2>
+<h2><a href="modules/post/newPost.php">Create Post</a></h2>
+<h2><a href="modules/post/posts.php">View All Posts</a></h2>
 </div>
 </body>
 </html>

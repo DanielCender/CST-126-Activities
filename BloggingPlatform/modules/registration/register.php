@@ -7,6 +7,7 @@
  * Synopsis: This script takes user data from a registration form and attempts to create a new user in the db.
  */
 include "../helpers/db.php";
+
 $firstName = $lastName = $userPassword = $email = "";
 
 // Open MySQL connection

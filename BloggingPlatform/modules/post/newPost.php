@@ -9,7 +9,8 @@
 
 include "../helpers/session.php";
 
-$userId = $_GET['userId'];
+// $userId = $_GET['userId'];
+$userId = getUserId();
 ?>
 
 <!DOCTYPE html>

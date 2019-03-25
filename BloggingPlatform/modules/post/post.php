@@ -1,14 +1,12 @@
 <?php
 /*
- * Project: CST-126-Blog-Project v.0.3
- * Module Name: BlogPost v.0.1
+ * Project: CST-126-Blog-Project v.0.4
+ * Module Name: BlogPost v.0.2
  * Author: Daniel Cender
- * Date: March 17, 2019
- * Synopsis: This script takes data from a form and creates a new post in the
+ * Date: March 24, 2019
+ * Synopsis: This script takes data from a form and creates/edits/deletes a user post.
  */
 include "../helpers/db.php";
-
-// session_start(); // Open session to as to save variables to the global object
 
 $conn = dbConnect();
 
@@ -16,9 +14,6 @@ if(!isset($_POST['title']) || !isset($_POST['content'])) {
     echo 'Post entry is invalid';
     die();
 }
-
-echo " - " . $_POST['title'] . " - " . $_POST['content'] . " - " . $_POST['author'] . " - ";
-
 
 $title = $_POST['title'];
 $author = $_POST['author'];
@@ -28,23 +23,33 @@ $content = $_POST['content'];
 switch($_POST['action']) {
     case 'save':
         //Save post to table
-        $results = $conn->query("INSERT INTO post(title, author, content) VALUES ('$title', '$author', '$content')"); 
+        $result = $conn->query("INSERT INTO post(title, author, content) VALUES ('$title', '$author', '$content')"); 
         if($conn->error) {
             echo $conn->error;
         }
-        $row = $results->fetch_assoc();
-        print_r($row);
+        $host  = $_SERVER['HTTP_HOST'];
+        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
     case 'update':
-        // TODO: Update post func
+        $id = $_POST["id"];
+        $result = $conn->query("UPDATE post SET Title = '$title', Author = '$author', Content = '$content' WHERE ID = $id");
+        if($conn->error) {
+            echo $conn->error;
+        }
+        $host  = $_SERVER['HTTP_HOST'];
+        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
-    case 'del':
-        // TODO: Delete post func
+    case 'delete':
+        $id = $_POST['id'];
+        $result = $conn->query("DELETE FROM post WHERE ID = '$id'");
+        if($conn->error) {
+            echo $conn->error;
+        }
+        $host  = $_SERVER['HTTP_HOST'];
+        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
     default:
         echo 'no action defined';
 }
-
-
 
 ?>
