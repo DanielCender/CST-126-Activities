@@ -18,6 +18,15 @@ if (isset($_GET['selectionSet'])) {
 $selectionSet = '';
 }
 
+if (isset($_GET['deleteID']) && isset($_GET['selectionSet'])) {
+    // Perform delete action
+    $deleteID = $_GET['deleteID'];
+    $deleteQuery = "DELETE FROM $selectionSet WHERE ID = $deleteID";
+    if($conn->query($deleteQuery) != true) {
+        echo $conn->error;
+    }
+}
+
 
 ?>
 
@@ -71,16 +80,17 @@ $selectionSet = '';
    		<tbody>
       <?php 
       if($selectionSet == 'post') {
-        $sqlSelect = "SELECT post.Title AS Title, CONCAT(user.FirstName, ' ', user.LastName) AS Name, post.Votes FROM post INNER JOIN user WHERE post.Author = user.ID";
+        $sqlSelect = "SELECT post.ID, post.Title AS Title, CONCAT(user.FirstName, ' ', user.LastName) AS Name, post.Votes FROM post INNER JOIN user WHERE post.Author = user.ID";
       } else if ($selectionSet == 'user') {
-          $sqlSelect = "SELECT CONCAT(FirstName, ' ', LastName) AS Name FROM user";
+          $sqlSelect = "SELECT ID, CONCAT(FirstName, ' ', LastName) AS Name FROM user WHERE RoleID <> 2";
       }
         $results = $conn->query($sqlSelect);
         while($item = $results->fetch_assoc()) {
             echo '<tr>';
             echo '<td>';
-            echo $item['Title'] . ' - ' . $item['Name'] . ' - ' . $item['Votes'];
+            echo ($selectionSet == 'post' ? ($item['Title'] . ' - ' . $item['Name'] . ' - ' . $item['Votes']) : ($item['Name']));
             echo '</td>';
+            echo '<td>' . '<a href="index.php?deleteID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Delete</a></td>';
             echo '</tr>';
         }
       ?>
