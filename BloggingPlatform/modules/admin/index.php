@@ -27,6 +27,15 @@ if (isset($_GET['deleteID']) && isset($_GET['selectionSet'])) {
     }
 }
 
+if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
+    // Perform ban action
+    $banID = $_GET['banID'];
+    $banQuery = "INSERT INTO blacklist VALUES(SELECT Email FROM user WHERE ID = $banID)";
+    if($conn->query($banQuery) != true) {
+        echo $conn->error;
+    }
+}
+
 
 ?>
 
@@ -91,6 +100,10 @@ if (isset($_GET['deleteID']) && isset($_GET['selectionSet'])) {
             echo ($selectionSet == 'post' ? ($item['Title'] . ' - ' . $item['Name'] . ' - ' . $item['Votes']) : ($item['Name']));
             echo '</td>';
             echo '<td>' . '<a href="index.php?deleteID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Delete</a></td>';
+            if($selectionSet == 'user') {
+                echo '<td>' . '<a href="index.php?banID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Ban Permanently</a></td>';
+            }
+            
             echo '</tr>';
         }
       ?>
