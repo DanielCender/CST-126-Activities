@@ -30,7 +30,7 @@ if (isset($_GET['deleteID']) && isset($_GET['selectionSet'])) {
 if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
     // Perform ban action
     $banID = $_GET['banID'];
-    $banQuery = "INSERT INTO blacklist VALUES(SELECT Email FROM user WHERE ID = $banID)";
+    $banQuery = "INSERT INTO blacklist (Email) SELECT Email FROM user WHERE ID = $banID";
     if($conn->query($banQuery) != true) {
         echo $conn->error;
     }
