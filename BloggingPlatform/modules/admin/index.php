@@ -8,14 +8,6 @@
  */
 
 require_once '../helpers/db.php';
-<<<<<<< HEAD
-require_once '../helpers/funcs.php';
-
-// if(!isAdmin()) {
-//     exit('You are unauthorized to view this page. Please ask your system administrator for permission.');
-// }
-=======
->>>>>>> 65914a641637dfc68a6e908ad86f86b378a90cd2
 
 $conn = dbConnect();
 
@@ -26,12 +18,9 @@ if (isset($_GET['selectionSet'])) {
 $selectionSet = '';
 }
 
-<<<<<<< HEAD
 /**
  * Prechecks for any calls to modify either users or posts
  */
-=======
->>>>>>> 65914a641637dfc68a6e908ad86f86b378a90cd2
 if (isset($_GET['deleteID']) && isset($_GET['selectionSet'])) {
     // Perform delete action
     $deleteID = $_GET['deleteID'];
@@ -48,15 +37,12 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
     if($conn->query($banQuery) != true) {
         echo $conn->error;
     }
-<<<<<<< HEAD
     // Perform delete action after blacklisting complete
     $deleteID = $_GET['banID'];
     $deleteQuery = "DELETE FROM $selectionSet WHERE ID = $deleteID";
     if($conn->query($deleteQuery) != true) {
         echo $conn->error;
     }
-=======
->>>>>>> 65914a641637dfc68a6e908ad86f86b378a90cd2
 }
 
 

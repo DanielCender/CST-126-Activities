@@ -1,4 +1,13 @@
 <?php
+/*
+ * Project: CST-126-Blog-Project v.0.3
+ * Module Name: helpers v.0.2
+ * Author: Daniel Cender
+ * Date: March 31, 2019
+ * Synopsis: This script includes general purpose helper methods.
+ * TODO: Fix bugs that occur when including this file in another script...
+ */
+
 include 'db.php';
 include 'session.php';
 
@@ -6,11 +15,7 @@ function isAdmin() {
     $userId = getUserId();
     $conn = dbConnect();
     
-<<<<<<< HEAD
     $result = $conn->query("SELECT * FROM user WHERE RoleID = 2 AND ID = $userId");
-=======
-    $result = $conn->query("SELECT FROM user WHERE RoleID = 2 AND ID = $userId");
->>>>>>> 65914a641637dfc68a6e908ad86f86b378a90cd2
     if($result->num_rows == 1) {
         return true;
     }

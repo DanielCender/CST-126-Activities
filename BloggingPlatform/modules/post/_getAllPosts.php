@@ -26,7 +26,7 @@ function displayAsTable($mysql_response) {
         $id = $row["ID"];
         $title = $row["Title"];
         $votes = $row["Votes"];
-        echo "<li><a href='editPost.php?postId=$id'>$title - Votes: $votes</a></li>";
+        echo "<li><a href='editPost.php?postId=$id'>$title - Votes: $votes</a> - <a href='posts.php?action=delete&post=$id'>Delete</a></li>";
     }
     echo "</ul>";
 }
