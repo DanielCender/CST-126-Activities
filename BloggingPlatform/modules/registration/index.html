@@ -14,9 +14,20 @@
 <title>Register Account</title>
 </head>
 <body>
-<h3>Sign Up</h3>
+<div class="row">
+<div class="col m3"></div>
+<div class="col s12 m6">
+<div class="card">
+<div class="card-content">
+<span class="card-title">Sign Up</span>
 		<div>
 		<form action="./register.php" method="POST">
+		<div class="row">
+        <div class="input-field col s12">
+          <input id="firstName" type="text" name="firstName" class="validate">
+          <label for="firstName">First Name</label>
+        </div>
+      </div>
 			First Name:<br /> <input type="text" name="firstName" required/><br />
 			Last Name:<br /> <input type="text" name="lastName" required/><br />
 			Email:<br /><input type="email" name="email" required/><br />
@@ -24,6 +35,10 @@
 			 <input
 				type="submit" value="submit" />
 		</form>
+		</div>
+		</div>
+		</div>
+		</div>
 		</div>
 </body>
 </html>

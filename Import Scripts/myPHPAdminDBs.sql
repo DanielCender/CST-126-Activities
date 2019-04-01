@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 25, 2019 at 01:03 AM
+-- Generation Time: Mar 30, 2019 at 01:52 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -80,7 +80,20 @@ CREATE TABLE `activity4_users` (
 --
 
 INSERT INTO `activity4_users` (`ID`, `FIRST_NAME`, `LAST_NAME`, `USERNAME`, `PASSWORD`) VALUES
-(1, 'Daniel', 'Cender', 'dan', 'dan');
+(1, 'Daniel', 'Cender', 'dan', 'dan'),
+(2, 'Daniel', 'Cender', 'dar', 'dar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `ADDRESS` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -105,20 +118,11 @@ CREATE TABLE `blog` (
 CREATE TABLE `post` (
   `ID` int(11) NOT NULL,
   `Title` varchar(200) NOT NULL,
-  `Content` blob NOT NULL,
+  `Content` text NOT NULL,
   `Author` int(11) NOT NULL,
   `Votes` int(11) DEFAULT '0',
   `BlogID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `post`
---
-
-INSERT INTO `post` (`ID`, `Title`, `Content`, `Author`, `Votes`, `BlogID`) VALUES
-(1, 'This', 0x436f6e74656e74, 1, 0, NULL),
-(2, 'Re:Topic 4 DQ 2', 0x6664736166647361666473, 1, 0, NULL),
-(3, 'Re:Topic 3 DQ 2', 0x666461736664736166647361, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,7 +155,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `FirstName`, `LastName`, `Email`, `Password`, `RoleID`) VALUES
-(1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', NULL);
+(1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', NULL),
+(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cmFy', NULL);
 
 --
 -- Indexes for dumped tables
@@ -180,6 +185,13 @@ ALTER TABLE `activity3_users`
 --
 ALTER TABLE `activity4_users`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID1_idx` (`USER_ID`);
 
 --
 -- Indexes for table `blog`
@@ -232,7 +244,13 @@ ALTER TABLE `activity3_users`
 -- AUTO_INCREMENT for table `activity4_users`
 --
 ALTER TABLE `activity4_users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -244,7 +262,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -256,11 +274,17 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `ID1` FOREIGN KEY (`USER_ID`) REFERENCES `activity2_users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user`
