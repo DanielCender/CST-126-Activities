@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 30, 2019 at 01:52 AM
+-- Generation Time: Apr 01, 2019 at 04:35 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -98,6 +98,17 @@ CREATE TABLE `address` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blacklist`
+--
+
+CREATE TABLE `blacklist` (
+  `ID` int(11) NOT NULL,
+  `Email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `blog`
 --
 
@@ -124,6 +135,15 @@ CREATE TABLE `post` (
   `BlogID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`ID`, `Title`, `Content`, `Author`, `Votes`, `BlogID`) VALUES
+(3, 'fdsafdsfd', 'fdsfdsfdsfd', 1, 0, NULL),
+(4, 'Re:Topic 4 DQ 2', 'fds', 1, 0, NULL),
+(5, 'fdsaf', 'fdsafs', 1, 0, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -134,6 +154,14 @@ CREATE TABLE `role` (
   `RoleID` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`RoleID`, `Name`) VALUES
+(1, 'USER'),
+(2, 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -155,8 +183,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `FirstName`, `LastName`, `Email`, `Password`, `RoleID`) VALUES
-(1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', NULL),
-(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cmFy', NULL);
+(1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', 2),
+(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cmFy', 1);
 
 --
 -- Indexes for dumped tables
@@ -194,16 +222,24 @@ ALTER TABLE `address`
   ADD KEY `ID1_idx` (`USER_ID`);
 
 --
+-- Indexes for table `blacklist`
+--
+ALTER TABLE `blacklist`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Author` (`Author`);
 
 --
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Author` (`Author`);
 
 --
 -- Indexes for table `role`
@@ -253,6 +289,12 @@ ALTER TABLE `address`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `blacklist`
+--
+ALTER TABLE `blacklist`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
@@ -262,13 +304,13 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `RoleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -285,6 +327,18 @@ ALTER TABLE `user`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `ID1` FOREIGN KEY (`USER_ID`) REFERENCES `activity2_users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`Author`) REFERENCES `user` (`ID`);
+
+--
+-- Constraints for table `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`Author`) REFERENCES `user` (`ID`);
 
 --
 -- Constraints for table `user`
