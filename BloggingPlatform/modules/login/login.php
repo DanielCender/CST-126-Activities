@@ -19,7 +19,7 @@ if($conn->connect_error) {
     echo $conn->connect_error;
 }
 
-$sqlQuery = "SELECT * FROM user WHERE Email = " . "'$email'" . " AND Password = " . "'$userPassword'";
+$sqlQuery = "SELECT user.ID, user.FirstName, user.LastName, user.RoleID FROM user WHERE user.Email = " . "'$email'" . " AND user.Password = " . "'$userPassword'" . " AND '$email' NOT IN(SELECT Email FROM blacklist)";
 
 $result = $conn->query($sqlQuery);
 

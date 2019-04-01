@@ -18,4 +18,5 @@ function getUserId() {
     session_start();
     return $_SESSION['USER_ID'];
 }
+
 ?>
