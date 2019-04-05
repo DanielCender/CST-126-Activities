@@ -21,7 +21,7 @@ displayAsTable($resultSet);
 
 
 function displayAsTable($mysql_response) {
-    echo "<ul>";
+    echo "<ul style='margin-top:50px'>";
     while($row = $mysql_response->fetch_assoc()) {
         $id = $row["ID"];
         $title = $row["Title"];

@@ -8,11 +8,12 @@
  * TODO: Fix bugs that occur when including this file in another script...
  */
 
-include 'db.php';
-include 'session.php';
+include_once(URL_PREFIX . "modules/helpers/db.php");
+include_once(URL_PREFIX . "modules/helpers/session.php");
 
 function isAdmin() {
     $userId = getUserId();
+    echo $userId;
     $conn = dbConnect();
     
     $result = $conn->query("SELECT * FROM user WHERE RoleID = 2 AND ID = $userId");
@@ -21,4 +22,4 @@ function isAdmin() {
     }
     return false;
 }
-
+?>

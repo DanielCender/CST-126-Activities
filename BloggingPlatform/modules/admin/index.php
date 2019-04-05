@@ -8,6 +8,7 @@
  */
 
 require_once '../helpers/db.php';
+require_once '../helpers/funcs.php';
 
 $conn = dbConnect();
 
@@ -45,7 +46,6 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
     }
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +65,7 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
 
 </head>
 <body>
+<?php include("../header/_header.php"); ?>
 
   <div class="row">
       <div class="col s6">

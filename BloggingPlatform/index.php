@@ -7,6 +7,16 @@
  * Synopsis: This HTML file is the entry point into the blogging platform web app. It links to the other top level modules of the application.
  */
  -->
+ <?php 
+ $host  = $_SERVER['HTTP_HOST'];
+ include_once("http://$host/CST-126-Projects/BloggingPlatform/modules/helpers/funcs.php");
+ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
+ // Some global variables for including files properly
+ define('URL_PREFIX', $urlPrefix);
+ 
+ echo URL_PREFIX . "modules/helpers/db.php";
+
+ ?>
 
 <!DOCTYPE html>
 <html>

@@ -6,8 +6,8 @@
  * Date: March 10, 2019
  * Synopsis: This script takes user data from a login form and attempts to log them in. So far, no restrictions on passwords or login attempts.
  */
-include "../helpers/session.php";
-include "../helpers/db.php";
+include_once("../helpers/session.php");
+include_once("../helpers/db.php");
 
 $conn = dbConnect();
 

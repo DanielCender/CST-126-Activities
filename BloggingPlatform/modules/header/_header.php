@@ -7,38 +7,34 @@
  * Synopsis: This page fragment displays the search box, the action box, and the profile menu.
  */
 
-require_once '../modules/helpers/funcs.php';
-$host  = $_SERVER['HTTP_HOST'];
+$host = $_SERVER['HTTP_HOST'];
 $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
-
-// echo '<div class="navbar-fixed">
-//     <nav>
-//       <div class="nav-wrapper">
-//         <a href="#!" class="brand-logo">Logo</a>
-//         <ul class="right hide-on-med-and-down">';
-// echo '<li><a href="' . $urlPrefix . 'modules/post/newPost.php">New Post</a></li>';
-// echo '<li><a href="' . $urlPrefix . 'modules/blog/newBlog.php">New Blog</a></li>';
-// if(isAdmin()) {
-//     echo '<li><a href="' . $urlPrefix . 'modules/admin.index.php">Admin Console</a></li>';
-// }
-// echo "</ul>
-//       </div>
-//     </nav>
-//   </div>";
 ?>
 
 
- <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="<?php echo $urlPrefix;?>modules/post/newPost.php">New Post</a></li>
-          <li><a href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New Blog</a></li>
-          <?php if(isAdmin()): ?>
-          <li><a href="<?php echo $urlPrefix;?>modules/admin/index.php">Admin Console</a></li>
-          <?php endif;?>
-        </ul>
-      </div>
-    </nav>
-  </div>
+<div class="navbar-fixed">
+	<nav>
+		<div class="nav-wrapper">
+			<ul class="left">
+				<li><a href="<?php echo $urlPrefix;?>modules/post/newPost.php">New
+						Post</a></li>
+				<li><a href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New
+						Blog</a></li>
+				<li><a href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a></li>
+				<li>
+					<form>
+						<div class="input-field">
+							<input id="search" type="search" required> <label
+								class="label-icon" for="search"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
+				</li>
+			</ul>
+			<div>
+				
+			</div>
+
+		</div>
+	</nav>
+</div>

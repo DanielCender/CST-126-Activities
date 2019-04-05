@@ -9,9 +9,9 @@
  -->
  
  <?php 
-   include 'modules/helpers/session.php';
-   
-//    $loggedIn = getUserId();
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
  ?>
  
 <!DOCTYPE html>
@@ -32,6 +32,7 @@
 </head>
 <body>
 <div>
+<h2><a href="modules/search/index.php">Search Posts</a></h2>
 <h2><a href="modules/post/newPost.php">Create Post</a></h2>
 <h2><a href="modules/post/posts.php">View All Posts</a></h2>
 <h2><a href="modules/admin/index.php">Admin Console</a></h2>

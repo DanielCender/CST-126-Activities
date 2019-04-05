@@ -29,9 +29,20 @@ $conn->close();
 <title>Edit Post</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="../helpers/languageFilter.js"></script>
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"
+	media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </head>
 <body>
-
+<?php include('../header/_header.php'); ?>
 <form action="post.php" method="POST">
 	
 	<div class="form_comp">
@@ -51,6 +62,9 @@ $conn->close();
 <button class="btn_submit" type="submit" name="action" value="delete">Delete</button>
 </div>
 </form>
+
+<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="../../js/materialize.min.js"></script>
 </body>
 
 </html>
