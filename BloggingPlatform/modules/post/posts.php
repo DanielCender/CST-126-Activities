@@ -7,8 +7,8 @@
  * Synopsis: This page displays all user posts and reveals actions to tag, update or delete.
  */
 require('../../config.php');
-require('../helpers/session.php');
-require('../helpers/db.php');
+require(DIR_HELPERS . 'session.php');
+require(DIR_HELPERS . 'db.php');
 
 if(isset($_GET['action']) & isset($_GET['post'])) {
     $conn = dbConnect();

@@ -6,12 +6,14 @@
  * Date: March 30, 2019
  * Synopsis: This page displays lists of users/posts/blogs for admins to flag, ban, or delete.
  */
-
-require_once '../helpers/db.php';
-require_once '../helpers/funcs.php';
+require('../../config.php');
+require(DIR_HELPERS . 'db.php');
+require(DIR_HELPERS . 'funcs.php');
+require(DIR_HELPERS . 'session.php');
 
 $conn = dbConnect();
-
+$userId = getUserId();
+echo "user id" . $userId;
 // Either 'user' || 'post'
 if (isset($_GET['selectionSet'])) {
     $selectionSet = $_GET['selectionSet'];
@@ -53,25 +55,18 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
 <head>
 <meta charset="UTF-8">
 <title>Admin Console</title>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"
-	media="screen,projection" />
-
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<?php include("../header/_header.php"); ?>
+<?php include(VIEW_HEADER); ?>
 
+  <div class="container">
   <div class="row">
-      <div class="col s6">
-      Filter
-      <table>
+      <div class="col-sm-4">
+      <table class="table">
       <thead>
+      <tr><th class="col">Filter</th></tr>
       </thead>
       <tbody>
       <tr>
@@ -85,9 +80,11 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
       </div>
       
       
-      <div class="col s6">
-      <table>
+      <div class="col-sm-8">
+      <table class="table">
       <thead>
+      <tr>
+      <th class="col">
    		<?php 
    		if($selectionSet == 'user') {
    		    echo 'Users';
@@ -95,6 +92,8 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
    		    echo 'Posts';
    		}
    		?>
+   		</th>
+   		</tr>
    		</thead>
    		<tbody>
       <?php 
@@ -109,6 +108,9 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
             echo '<td>';
             echo ($selectionSet == 'post' ? ($item['Title'] . ' - ' . $item['Name'] . ' - ' . $item['Votes']) : ($item['Name']));
             echo '</td>';
+            if(strcmp($item['ID'], $userId)) {
+                echo '<td>' . '<a href="../post/editPost.php?postId=' . $item['ID'] . '" target="_blank">Edit</a></td>';
+            }
             echo '<td>' . '<a href="index.php?deleteID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Delete</a></td>';
             if($selectionSet == 'user') {
                 echo '<td>' . '<a href="index.php?banID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Ban Permanently</a></td>';
@@ -123,8 +125,10 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
       
       </div>
     </div>
+    </div>
 
-<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="../../js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

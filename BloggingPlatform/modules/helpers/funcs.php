@@ -7,7 +7,7 @@
  * Synopsis: This script includes general purpose helper methods.
  * TODO: Fix bugs that occur when including this file in another script...
  */
-
+require('../../config.php');
 include_once(URL_PREFIX . "modules/helpers/db.php");
 include_once(URL_PREFIX . "modules/helpers/session.php");
 
