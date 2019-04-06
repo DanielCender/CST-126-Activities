@@ -11,7 +11,7 @@ include "../helpers/db.php";
 
 $conn = dbConnect();
 
-$sqlQuery = "SELECT * FROM post WHERE Author=$userId"; // id passed from posts.php
+$sqlQuery = "SELECT * FROM post"; //  WHERE Author=$userId id passed from posts.php
 
 $resultSet = $conn->query($sqlQuery);
 

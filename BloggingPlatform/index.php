@@ -39,7 +39,6 @@
 		<div class="col m3"></div>
 		<div class="col s12 m6">
 			<div class="card light-blue">
-
 				<div class="card-content white-text">
 					<span class="card-title">BlogoSphere Inc.</span>
 

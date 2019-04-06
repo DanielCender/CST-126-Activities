@@ -6,8 +6,9 @@
  * Date: March 31, 2019
  * Synopsis: This page displays all user posts and reveals actions to tag, update or delete.
  */
-require_once('../helpers/session.php');
-require_once '../helpers/db.php';
+require('../../config.php');
+require('../helpers/session.php');
+require('../helpers/db.php');
 
 if(isset($_GET['action']) & isset($_GET['post'])) {
     $conn = dbConnect();
@@ -17,8 +18,9 @@ if(isset($_GET['action']) & isset($_GET['post'])) {
         echo $conn->error;
     }
 }  
-
 $userId = getUserId();
+
+echo VIEW_HEADER;
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +40,7 @@ $userId = getUserId();
 
 </head>
 <body>
-<?php include '../header/_header.php'; ?>
+<?php include(VIEW_HEADER); ?>
 <h3>Your Posts</h3>
 <?php include '_getAllPosts.php'; ?>
 
