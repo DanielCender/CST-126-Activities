@@ -7,9 +7,10 @@
  * Synopsis: This page serves a search bar and listing of returned items.
  */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+require('../../config.php');
 
 $host = $_SERVER['HTTP_HOST'];
 $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
@@ -25,8 +26,8 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 
 </head>
 <body>
-
-<!--  HEADER START  -->
+<?php include(VIEW_HEADER); ?>
+<!--  HEADER START  
 	<nav class="navbar navbar-light bg-light">
 		<div class="nav-wrapper">
 			<ul class="left">
@@ -41,8 +42,7 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 			</div>
 
 		</div>
-	</nav>
-<!--  HEADER END -->
+	</nav>  -->
 
 <div class="container">
 <div class="row">

@@ -1,10 +1,10 @@
 <?php
 /*
- * Project: CST-126-Blog-Project v.0.7
- * Module Name: BlogPost v.0.4
+ * Project: CST-126-Blog-Project v.0.8
+ * Module Name: BlogPost v.0.5
  * Author: Daniel Cender
- * Date: April 6, 2019
- * Synopsis: This HTML Form allows a user to view a blog post in a more aesthetically pleasing page.
+ * Date: April 7, 2019
+ * Synopsis: This HTML Form allows a user to view a blog post in a more aesthetically pleasing page, vote, and comment.
  */
 
 require_once '../helpers/session.php';
@@ -66,6 +66,10 @@ $conn->close();
 		
 		</div>
 	</div>
+	
+	<div>
+	<!--  INCLUDE ALL COMMENTS ON THIS POST -->
+	</div>
 </div>
 
 <script>
@@ -87,6 +91,10 @@ xmlhttp.onreadystatechange = function() {
   var httpURL = "upVote.php?postId=" + postId;
   xmlhttp.open("GET", httpURL, true);
   xmlhttp.send();
+}
+
+function saveComment() {
+	
 }
 
 </script>

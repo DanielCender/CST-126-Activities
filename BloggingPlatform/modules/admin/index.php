@@ -13,7 +13,6 @@ require(DIR_HELPERS . 'session.php');
 
 $conn = dbConnect();
 $userId = getUserId();
-echo "user id" . $userId;
 // Either 'user' || 'post'
 if (isset($_GET['selectionSet'])) {
     $selectionSet = $_GET['selectionSet'];
