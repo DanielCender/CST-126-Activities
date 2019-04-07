@@ -35,15 +35,6 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 				<li><a href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New
 						Blog</a></li>
 				<li><a href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a></li>
-				<li>
-					<form>
-						<div class="input-field">
-							<input id="search" type="search" required> <label
-								class="label-icon" for="search"><i class="material-icons">search</i></label>
-							<i class="material-icons">close</i>
-						</div>
-					</form>
-				</li>
 			</ul>
 			<div>
 				
@@ -54,37 +45,72 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 <!--  HEADER END -->
 
 <div class="container">
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+<div class="row">
+<div class="col-md-3"></div>
+
+<div class="col-md-9">
+<form class="form-inline">
+<div class="col-md-3">
+  <select class="form-control" id="filterSelector" name="Filter" required>
+  <option>Filter</option>
+  <option value="post">Posts</option>
+  <option value="blog">Blogs</option>
+  <option value="user">Users</option>
+</select>
+   </div>
+   <div class="col-md-8">
+    <input type="text" class="form-control" id="searchText" aria-describedby="searchQuery" placeholder="Enter search">
+   </div>
+   <div class="col-md-1">
+    <button type="submit" class="btn btn-primary mb-2" onClick="searchForData()">Search</button>
+    </div>
 </form>
 </div>
+<div class="col-md-3"></div>
+</div>
+</div>
+
+<!-- CONTAINER FOR RETURNED LIVE SEARCH RESULTS -->
+<div id="livesearch" class="container">
+</div>
+
+<script>
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
+function searchForData() {
+	var selector = document.getElementById("filterSelector");
+	var filter = selector.options[selector.selectedIndex].value;
+	console.log(filter);
+	var text = document.getElementById("searchText").value;
+
+	if(filter.length == 0 && text.length == 0) {
+		return;
+	}
+
+	//	If there are values to be queried
+	if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState==4 && this.status==200) {
+	      document.getElementById("livesearch").innerHTML=this.responseText;
+	      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+	    }
+	  }
+	  xmlhttp.open("GET","livesearch.php?filter="+ filter + "&text=" + text,true);
+	  xmlhttp.send();
+}
+
+</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

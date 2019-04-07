@@ -17,7 +17,7 @@ echo "user id" . $userId;
 // Either 'user' || 'post'
 if (isset($_GET['selectionSet'])) {
     $selectionSet = $_GET['selectionSet'];
-} else {    
+} else {
 $selectionSet = '';
 }
 
@@ -78,14 +78,14 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
       </tbody>
       </table>
       </div>
-      
-      
+
+
       <div class="col-sm-8">
       <table class="table">
       <thead>
       <tr>
       <th class="col">
-   		<?php 
+   		<?php
    		if($selectionSet == 'user') {
    		    echo 'Users';
    		} else if ($selectionSet == 'post') {
@@ -96,7 +96,7 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
    		</tr>
    		</thead>
    		<tbody>
-      <?php 
+      <?php
       if($selectionSet == 'post') {
         $sqlSelect = "SELECT post.ID, post.Title AS Title, CONCAT(user.FirstName, ' ', user.LastName) AS Name, post.Votes FROM post INNER JOIN user WHERE post.Author = user.ID";
       } else if ($selectionSet == 'user') {
@@ -108,21 +108,21 @@ if (isset($_GET['banID']) && isset($_GET['selectionSet'])) {
             echo '<td>';
             echo ($selectionSet == 'post' ? ($item['Title'] . ' - ' . $item['Name'] . ' - ' . $item['Votes']) : ($item['Name']));
             echo '</td>';
-            if(strcmp($item['ID'], $userId)) {
+            if(($selectionSet == 'post') && strcmp($item['ID'], $userId)) {
                 echo '<td>' . '<a href="../post/editPost.php?postId=' . $item['ID'] . '" target="_blank">Edit</a></td>';
             }
             echo '<td>' . '<a href="index.php?deleteID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Delete</a></td>';
             if($selectionSet == 'user') {
                 echo '<td>' . '<a href="index.php?banID=' . $item['ID'] . '&selectionSet=' . $selectionSet . '">Ban Permanently</a></td>';
             }
-            
+
             echo '</tr>';
         }
       ?>
       </tbody>
-      
+
       </table>
-      
+
       </div>
     </div>
     </div>
