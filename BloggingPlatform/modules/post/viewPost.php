@@ -19,6 +19,7 @@ $post = $conn->query("SELECT post.ID,post.Title,post.Content,post.Votes,CONCAT(u
 
 $row = $post->fetch_assoc();
 
+$id = $row['ID'];
 $title = $row["Title"];
 $content = $row["Content"];
 $author = $row["Author"];
@@ -44,6 +45,7 @@ $conn->close();
 	<div class="row">
 		<div class="col-md-3"></div>
 		<h1 class="display-3 col-md-6 text-center"><?php echo $title; ?></h1>
+		<span id="postId" style="display:none"><?php echo $id;?></span>
 		<div class="col-md-3"></div>
 	</div>
 	<div class="row">
@@ -51,12 +53,43 @@ $conn->close();
 		<h4 class="col-md-6 text-center">by <?php echo $author; ?></h4>
 		<div class="col-md-3"></div>
 	</div>
-	<div>
+	<div class="row">
 		<div class="col-md-3"></div>
-		<p class="col-md-6 text-left"><?php echo $content; ?></p>
-		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		<p class=""><?php echo $content; ?></p>
+		</div>
+		<div class="col-md-3">
+		<button type="button" class="btn btn-primary" onClick="upVote()">
+  Votes <span id="votes" class="badge badge-light"><?php echo $votes;?></span>
+  <span class="sr-only">upvotes</span>
+</button>
+		
+		</div>
 	</div>
 </div>
+
+<script>
+function upVote() {
+var postId = document.getElementById("postId").innerHTML;
+//	If there are values to be queried
+if (window.XMLHttpRequest) {
+// code for IE7+, Firefox, Chrome, Opera, Safari
+xmlhttp=new XMLHttpRequest();
+} else {  // code for IE6, IE5
+xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("votes").innerHTML=this.responseText;
+    }
+  }
+  var httpURL = "upVote.php?postId=" + postId;
+  xmlhttp.open("GET", httpURL, true);
+  xmlhttp.send();
+}
+
+</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
