@@ -13,7 +13,7 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 
 
 	<nav class="navbar fixed-top navbar-light bg-light">
-	<a class="navbar-brand" href="main.php">Bloggster</a>
+	<a class="navbar-brand" href="<?php echo $urlPrefix; ?>main.php">Bloggster</a>
 			<ul class="left">
 				<li><a href="<?php echo $urlPrefix;?>modules/post/newPost.php">New
 						Post</a></li>

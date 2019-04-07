@@ -1,449 +1,227 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
---
--- Host: localhost:8889
--- Generation Time: Apr 01, 2019 at 04:35 AM
--- Server version: 5.7.23
--- PHP Version: 7.2.10
-
-SET SQL_MODE
-= "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone
-= "+00:00";
-
---
--- Database: `blog`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity1_users`
---
-
-CREATE TABLE `activity1_users`
-(
-  `ID` int
-(11) NOT NULL,
-  `FIRST_NAME` varchar
-(100) NOT NULL,
-  `LAST_NAME` varchar
-(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity2_users`
---
-
-CREATE TABLE `activity2_users`
-(
-  `ID` int
-(11) NOT NULL,
-  `FIRST_NAME` varchar
-(100) NOT NULL,
-  `LAST_NAME` varchar
-(100) NOT NULL,
-  `USERNAME` varchar
-(50) NOT NULL,
-  `PASSWORD` varchar
-(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity3_users`
---
-
-CREATE TABLE `activity3_users`
-(
-  `ID` int
-(11) NOT NULL,
-  `FIRST_NAME` varchar
-(100) NOT NULL,
-  `LAST_NAME` varchar
-(100) NOT NULL,
-  `USERNAME` varchar
-(50) NOT NULL,
-  `PASSWORD` varchar
-(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `activity3_users`
---
-
-INSERT INTO `activity3_users` (`
-ID`,
-`FIRST_NAME
-`, `LAST_NAME`, `USERNAME`, `PASSWORD`) VALUES
-(3, 'Daniel', 'Cender', 'dan', 'dan');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity4_users`
---
-
-CREATE TABLE `activity4_users`
-(
-  `ID` int
-(11) NOT NULL,
-  `FIRST_NAME` varchar
-(100) DEFAULT NULL,
-  `LAST_NAME` varchar
-(100) DEFAULT NULL,
-  `USERNAME` varchar
-(50) DEFAULT NULL,
-  `PASSWORD` varchar
-(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `activity4_users`
---
-
-INSERT INTO `activity4_users` (`
-ID`,
-`FIRST_NAME
-`, `LAST_NAME`, `USERNAME`, `PASSWORD`) VALUES
-(1, 'Daniel', 'Cender', 'dan', 'dan'),
-(2, 'Daniel', 'Cender', 'dar', 'dar');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `address`
---
-
-CREATE TABLE `address`
-(
-  `ID` int
-(11) NOT NULL,
-  `USER_ID` int
-(11) NOT NULL,
-  `ADDRESS` varchar
-(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blacklist`
---
-
-CREATE TABLE `blacklist`
-(
-  `ID` int
-(11) NOT NULL,
-  `Email` varchar
-(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog`
---
-
-CREATE TABLE `blog`
-(
-  `ID` int
-(11) NOT NULL,
-  `Name` varchar
-(100) NOT NULL,
-  `Description` varchar
-(250) DEFAULT NULL,
-  `Author` int
-(11) NOT NULL,
-  `Votes` int
-(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `post`
---
-
-CREATE TABLE `post`
-(
-  `ID` int
-(11) NOT NULL,
-  `Title` varchar
-(200) NOT NULL,
-  `Content` text NOT NULL,
-  `Author` int
-(11) NOT NULL,
-  `Votes` int
-(11) DEFAULT '0',
-  `BlogID` int
-(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `post`
---
-
-INSERT INTO `post` (`
-ID`,
-`Title
-`, `Content`, `Author`, `Votes`, `BlogID`) VALUES
-(3, 'fdsafdsfd', 'fdsfdsfdsfd', 1, 0, NULL),
-(4, 'Re:Topic 4 DQ 2', 'fds', 1, 0, NULL),
-(5, 'fdsaf', 'fdsafs', 1, 0, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `role`
---
-
-CREATE TABLE `role`
-(
-  `RoleID` int
-(11) NOT NULL,
-  `Name` varchar
-(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `role`
---
-
-INSERT INTO `role` (`
-RoleID`,
-`Name
-`) VALUES
-(1, 'USER'),
-(2, 'ADMIN');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user`
-(
-  `ID` int
-(11) NOT NULL,
-  `FirstName` varchar
-(100) NOT NULL,
-  `LastName` varchar
-(100) NOT NULL,
-  `Email` varchar
-(100) NOT NULL,
-  `Password` varchar
-(25) NOT NULL,
-  `RoleID` int
-(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user`
-  (`ID`, `FirstName
-
-`, `LastName`, `Email`, `Password`, `RoleID`) VALUES
-(1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', 2),
-(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cmFy', 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `activity1_users`
---
-ALTER TABLE `activity1_users`
-ADD PRIMARY KEY
-(`ID`);
-
---
--- Indexes for table `activity2_users`
---
-ALTER TABLE `activity2_users`
-ADD PRIMARY KEY
-(`ID`);
-
---
--- Indexes for table `activity3_users`
---
-ALTER TABLE `activity3_users`
-ADD PRIMARY KEY
-(`ID`);
-
---
--- Indexes for table `activity4_users`
---
-ALTER TABLE `activity4_users`
-ADD PRIMARY KEY
-(`ID`);
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-ADD PRIMARY KEY
-(`ID`),
-ADD KEY `ID1_idx`
-(`USER_ID`);
-
---
--- Indexes for table `blacklist`
---
-ALTER TABLE `blacklist`
-ADD PRIMARY KEY
-(`ID`);
-
---
--- Indexes for table `blog`
---
-ALTER TABLE `blog`
-ADD PRIMARY KEY
-(`ID`),
-ADD KEY `Author`
-(`Author`);
-
---
--- Indexes for table `post`
---
-ALTER TABLE `post`
-ADD PRIMARY KEY
-(`ID`),
-ADD KEY `Author`
-(`Author`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-ADD PRIMARY KEY
-(`RoleID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-ADD PRIMARY KEY
-(`ID`),
-ADD KEY `user_ibfk_1`
-(`RoleID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity1_users`
---
-ALTER TABLE `activity1_users`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `activity2_users`
---
-ALTER TABLE `activity2_users`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `activity3_users`
---
-ALTER TABLE `activity3_users`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `activity4_users`
---
-ALTER TABLE `activity4_users`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `address`
---
-ALTER TABLE `address`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blacklist`
---
-ALTER TABLE `blacklist`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blog`
---
-ALTER TABLE `blog`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `post`
---
-ALTER TABLE `post`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `RoleID` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `ID` int
-(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `address`
---
-ALTER TABLE `address`
-ADD CONSTRAINT `ID1` FOREIGN KEY
-(`USER_ID`) REFERENCES `activity2_users`
-(`ID`) ON
-DELETE NO ACTION ON
-UPDATE NO ACTION;
-
---
--- Constraints for table `blog`
---
-ALTER TABLE `blog`
-ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY
-(`Author`) REFERENCES `user`
-(`ID`);
-
---
--- Constraints for table `post`
---
-ALTER TABLE `post`
-ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY
-(`Author`) REFERENCES `user`
-(`ID`);
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY
-(`RoleID`) REFERENCES `role`
-(`RoleID`);
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema blog
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema blog
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 ;
+USE `blog` ;
+
+-- -----------------------------------------------------
+-- Table `blog`.`activity1_users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`activity1_users` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`activity1_users` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` VARCHAR(100) NOT NULL,
+  `LAST_NAME` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`activity2_users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`activity2_users` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`activity2_users` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` VARCHAR(100) NOT NULL,
+  `LAST_NAME` VARCHAR(100) NOT NULL,
+  `USERNAME` VARCHAR(50) NOT NULL,
+  `PASSWORD` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`activity3_users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`activity3_users` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`activity3_users` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` VARCHAR(100) NOT NULL,
+  `LAST_NAME` VARCHAR(100) NOT NULL,
+  `USERNAME` VARCHAR(50) NOT NULL,
+  `PASSWORD` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`activity4_users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`activity4_users` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`activity4_users` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` VARCHAR(100) NULL DEFAULT NULL,
+  `LAST_NAME` VARCHAR(100) NULL DEFAULT NULL,
+  `USERNAME` VARCHAR(50) NULL DEFAULT NULL,
+  `PASSWORD` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`address`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`address` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`address` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` INT(11) NOT NULL,
+  `ADDRESS` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `ID1`
+    FOREIGN KEY (`USER_ID`)
+    REFERENCES `blog`.`activity2_users` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE INDEX `ID1_idx` ON `blog`.`address` (`USER_ID` ASC) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`blacklist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`blacklist` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`blacklist` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Email` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`role` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`role` (
+  `RoleID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`RoleID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`user` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` VARCHAR(100) NOT NULL,
+  `LastName` VARCHAR(100) NOT NULL,
+  `Email` VARCHAR(100) NOT NULL,
+  `Password` VARCHAR(25) NOT NULL,
+  `RoleID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `user_ibfk_1`
+    FOREIGN KEY (`RoleID`)
+    REFERENCES `blog`.`role` (`RoleID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+CREATE UNIQUE INDEX `Email` ON `blog`.`user` (`Email` ASC) VISIBLE;
+
+CREATE INDEX `user_ibfk_1` ON `blog`.`user` (`RoleID` ASC) VISIBLE;
+
+CREATE FULLTEXT INDEX `FirstName` ON `blog`.`user` (`FirstName`, `LastName`, `Email`) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`blog`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`blog` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`blog` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(100) NOT NULL,
+  `Description` VARCHAR(250) NULL DEFAULT NULL,
+  `Author` INT(11) NOT NULL,
+  `Votes` INT(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `blog_ibfk_1`
+    FOREIGN KEY (`Author`)
+    REFERENCES `blog`.`user` (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE INDEX `Author` ON `blog`.`blog` (`Author` ASC) VISIBLE;
+
+CREATE FULLTEXT INDEX `Name` ON `blog`.`blog` (`Name`, `Description`) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`post` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`post` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Title` VARCHAR(200) NOT NULL,
+  `Content` TEXT NOT NULL,
+  `Author` INT(11) NOT NULL,
+  `Votes` INT(11) NULL DEFAULT '0',
+  `BlogID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT `post_ibfk_1`
+    FOREIGN KEY (`Author`)
+    REFERENCES `blog`.`user` (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 14
+DEFAULT CHARACTER SET = utf8;
+
+CREATE INDEX `Author` ON `blog`.`post` (`Author` ASC) VISIBLE;
+
+CREATE FULLTEXT INDEX `Title` ON `blog`.`post` (`Title`, `Content`) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `blog`.`vote`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`vote` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`vote` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `User` INT(11) NOT NULL,
+  `Post` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+CREATE UNIQUE INDEX `User` ON `blog`.`vote` (`User` ASC, `Post` ASC) VISIBLE;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
