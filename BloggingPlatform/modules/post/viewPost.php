@@ -7,8 +7,11 @@
  * Synopsis: This HTML Form allows a user to view a blog post in a more aesthetically pleasing page, vote, and comment.
  */
 
-require_once '../helpers/session.php';
-require_once '../helpers/db.php';
+// require_once '../helpers/session.php';
+// require_once '../helpers/db.php';
+require('../../config.php');
+require(DIR_HELPERS . 'session.php');
+require(DIR_HELPERS . 'db.php');
 
 $userId = getUserId();
 
@@ -34,13 +37,11 @@ $conn->close();
 <title>View Post</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="../helpers/languageFilter.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 </head>
 <body>
-
+<?php include(VIEW_HEADER); ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-3"></div>

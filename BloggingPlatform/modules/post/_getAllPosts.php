@@ -7,8 +7,9 @@
  * Synopsis: This fragment exports an unordered list of posts belonging to the user currently logged in.
  */
 
-include "../helpers/db.php";
+// include "../helpers/db.php";
 
+echo "gets in here";
 $conn = dbConnect();
 
 $sqlQuery = "SELECT * FROM post"; //  WHERE Author=$userId id passed from posts.php
