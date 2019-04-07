@@ -50,13 +50,13 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 <div class="col-md-9">
 <form class="form-inline" onSubmit="return false">
   <select class="form-control" id="filterSelector" name="Filter" required>
-  <option>Filter</option>
+  <option value="filter">Filter</option>
   <option value="post">Posts</option>
   <option value="blog">Blogs</option>
   <option value="user">Users</option>
 </select>
-    <input type="text" class="form-control" id="searchText" aria-describedby="searchQuery" placeholder="Enter search">
-    <button type="submit" class="btn btn-primary mb-2" onClick="searchForData()">Search</button>
+    <input type="text" class="form-control" onkeyup="searchForData()" id="searchText" aria-describedby="searchQuery" placeholder="Enter search">
+    <!-- <button type="submit" class="btn btn-primary mb-2" onClick="searchForData()">Search</button> -->
 </form>
 </div>
 <div class="col-md-3"></div>
@@ -73,6 +73,7 @@ function searchForData() {
 	var filter = selector.options[selector.selectedIndex].value;
 	var text = document.getElementById("searchText").value;
 
+	console.log(filter);
 	if(filter.length == 0 && text.length == 0) {
 		return;
 	}

@@ -20,9 +20,9 @@ $text = strip_tags($_GET["text"]);
 
 unset($_GET['filter']); // Hopefully this will work
 unset($_GET['text']);
-// (!$filter == 'Filter') && (strlen($filter) > 0) && (strlen($text) > 0)
-if(1 == 1) {
-    echo 'gets in here';
+
+if (!($filter == 'filter')) {
+// if(1 == 1) {
     $conn = dbConnect();
     if($filter == 'post') {
         $query = "SELECT ID,Title,Content,Votes FROM " . $filter . " WHERE MATCH (Title,Content) AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
@@ -41,8 +41,6 @@ if(1 == 1) {
         echo 'No Results';
         die;
     }
-    
-    echo "Got to here";
     
     $arrAll = $resultSet->fetch_all();
     $arrAssoc = $resultSet->fetch_assoc();
