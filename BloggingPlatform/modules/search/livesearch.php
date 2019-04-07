@@ -25,7 +25,7 @@ if (!($filter == 'filter')) {
 // if(1 == 1) {
     $conn = dbConnect();
     if($filter == 'post') {
-        $query = "SELECT ID,Title,Content,Votes FROM " . $filter . " WHERE MATCH (Title,Content) AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
+        $query = "SELECT ID,Title,SUBSTRING(Content,1,50) AS Content,Votes FROM " . $filter . " WHERE MATCH (Title,Content) AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
     } else if ($filter == 'blog') {
         $query = "SELECT ID,Name,Description FROM " . $filter . " WHERE MATCH (Name,Description)
         AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
@@ -43,7 +43,6 @@ if (!($filter == 'filter')) {
     }
     
     $arrAll = $resultSet->fetch_all();
-    $arrAssoc = $resultSet->fetch_assoc();
     $arrHeaders = $resultSet->fetch_fields();
     
     echo '<table class="table table-hover">';
@@ -61,9 +60,9 @@ if (!($filter == 'filter')) {
         foreach($row as $col) {
             // If the data is a post type and the data being written is a title
             if($filter == 'post' && (array_search($col, $row) == 'Title')) {
-                echo '<td><a href="../post/viewPost.php?id=' . $row['ID'] . '">' . $col . '</td>';
+                echo '<td><a href="../post/viewPost.php?id=' . $col . '">' . $col . '</td>';
             } else if($filter == 'blog' && (array_search($col, $row) == 'Name')) {
-                echo '<td><a href="../blog/viewBlog.php?id=' . $row['ID'] . '">' . $col . '</td>';
+                echo '<td><a href="../blog/viewBlog.php?id=' . $col . '">' . $col . '</td>';
             } else {
                 echo "<td>" . $col . "</td>";
             }
