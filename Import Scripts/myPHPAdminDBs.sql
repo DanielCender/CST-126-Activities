@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 01, 2019 at 04:35 AM
+-- Generation Time: Apr 07, 2019 at 07:26 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -106,6 +106,14 @@ CREATE TABLE `blacklist` (
   `Email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `blacklist`
+--
+
+INSERT INTO `blacklist` (`ID`, `Email`) VALUES
+(1, 'd.r.c.98@hotmail.com'),
+(2, 'd.r.c.98@hotmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -140,9 +148,13 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`ID`, `Title`, `Content`, `Author`, `Votes`, `BlogID`) VALUES
-(3, 'fdsafdsfd', 'fdsfdsfdsfd', 1, 0, NULL),
-(4, 'Re:Topic 4 DQ 2', 'fds', 1, 0, NULL),
-(5, 'fdsaf', 'fdsafs', 1, 0, NULL);
+(7, 'Re:Topic 4 DQ 2', 'Is good', 1, 0, NULL),
+(8, 'Re:Topic 4 DQ 2', 'Is goodfds', 1, 0, NULL),
+(9, 'Re:Topic 4 DQ 2', 'Is goodfdsfdsf', 1, 0, NULL),
+(10, 'Re:Topic 4 DQ 2', 'Is goodfdsfdsf', 1, 0, NULL),
+(11, 'Re:Topic 4 DQ 2', 'Is goodfdsfdsf', 1, 0, NULL),
+(12, 'This post', 'Post content', 1, 153, NULL),
+(13, 'dafdafd', 'fdsfdsafd', 2, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -184,7 +196,26 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`ID`, `FirstName`, `LastName`, `Email`, `Password`, `RoleID`) VALUES
 (1, 'Daniel', 'Cender', 'dan@dan.com', 'ZGFu', 2),
-(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cmFy', 1);
+(2, 'Daniel', 'Cender', 'ryan@ryan.com', 'cnlhbg==', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vote`
+--
+
+CREATE TABLE `vote` (
+  `ID` int(11) NOT NULL,
+  `User` int(11) NOT NULL,
+  `Post` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vote`
+--
+
+INSERT INTO `vote` (`ID`, `User`, `Post`) VALUES
+(2, 1, 12);
 
 --
 -- Indexes for dumped tables
@@ -233,6 +264,7 @@ ALTER TABLE `blacklist`
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Author` (`Author`);
+ALTER TABLE `blog` ADD FULLTEXT KEY `Name` (`Name`,`Description`);
 
 --
 -- Indexes for table `post`
@@ -240,6 +272,7 @@ ALTER TABLE `blog`
 ALTER TABLE `post`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Author` (`Author`);
+ALTER TABLE `post` ADD FULLTEXT KEY `Title` (`Title`,`Content`);
 
 --
 -- Indexes for table `role`
@@ -252,7 +285,16 @@ ALTER TABLE `role`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Email` (`Email`),
   ADD KEY `user_ibfk_1` (`RoleID`);
+ALTER TABLE `user` ADD FULLTEXT KEY `FirstName` (`FirstName`,`LastName`,`Email`);
+
+--
+-- Indexes for table `vote`
+--
+ALTER TABLE `vote`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `User` (`User`,`Post`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -292,7 +334,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `blacklist`
 --
 ALTER TABLE `blacklist`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -304,7 +346,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -316,6 +358,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `vote`
+--
+ALTER TABLE `vote`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --

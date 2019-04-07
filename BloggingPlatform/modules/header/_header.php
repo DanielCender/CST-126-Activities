@@ -20,15 +20,6 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 				<li><a href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New
 						Blog</a></li>
 				<li><a href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a></li>
-				<li>
-					<form>
-						<div class="input-field">
-							<input id="search" type="search" required> <label
-								class="label-icon" for="search"><i class="material-icons">search</i></label>
-							<i class="material-icons">close</i>
-						</div>
-					</form>
-				</li>
 			</ul>
 			<div>
 				
