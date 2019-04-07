@@ -7,11 +7,11 @@
  * Synopsis: This page serves a search bar and listing of returned items.
  */
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host = $_SERVER['HTTP_HOST'];
-include_once ("http://$host/CST-126-Projects/BloggingPlatform/modules/helpers/funcs.php");
 $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 ?>
 
@@ -75,17 +75,9 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 </div>
 
 <script>
-
-jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
-
 function searchForData() {
 	var selector = document.getElementById("filterSelector");
 	var filter = selector.options[selector.selectedIndex].value;
-	console.log(filter);
 	var text = document.getElementById("searchText").value;
 
 	if(filter.length == 0 && text.length == 0) {
@@ -106,10 +98,10 @@ function searchForData() {
 	      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
 	    }
 	  }
-	  xmlhttp.open("GET","livesearch.php?filter="+ filter + "&text=" + text,true);
+	  var httpURL = "livesearch.php?filter=" + filter + "&text=" + text;
+	  xmlhttp.open("GET", httpURL, true);
 	  xmlhttp.send();
 }
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

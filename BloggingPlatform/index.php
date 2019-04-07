@@ -13,9 +13,6 @@
  $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
  // Some global variables for including files properly
  define('URL_PREFIX', $urlPrefix);
- 
- echo URL_PREFIX . "modules/helpers/db.php";
-
  ?>
 
 <!DOCTYPE html>
