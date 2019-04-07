@@ -27,29 +27,13 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 </head>
 <body>
 <?php include(VIEW_HEADER); ?>
-<!--  HEADER START  
-	<nav class="navbar navbar-light bg-light">
-		<div class="nav-wrapper">
-			<ul class="left">
-				<li><a href="<?php echo $urlPrefix;?>modules/post/newPost.php">New
-						Post</a></li>
-				<li><a href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New
-						Blog</a></li>
-				<li><a href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a></li>
-			</ul>
-			<div>
-				
-			</div>
-
-		</div>
-	</nav>  -->
 
 <div class="container">
 <div class="row">
 <div class="col-md-3"></div>
 <div class="col-md-9">
 <form class="form-inline" onSubmit="return false">
-  <select class="form-control" id="filterSelector" name="Filter" required>
+  <select class="form-control" id="filterSelector" name="Filter" onchange="searchForData()" required>
   <option value="filter">Filter</option>
   <option value="post">Posts</option>
   <option value="blog">Blogs</option>
@@ -74,7 +58,7 @@ function searchForData() {
 	var text = document.getElementById("searchText").value;
 
 	console.log(filter);
-	if(filter.length == 0 && text.length == 0) {
+	if(filter.length == 0) {
 		return;
 	}
 
