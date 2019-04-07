@@ -6,15 +6,14 @@
  * Date: March 30, 2019
  * Synopsis: This page fragment displays the search box, the action box, and the profile menu.
  */
-
+require('../../config.php');
 $host = $_SERVER['HTTP_HOST'];
 $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 ?>
 
 
-<div class="navbar-fixed">
-	<nav>
-		<div class="nav-wrapper">
+	<nav class="navbar fixed-top navbar-light bg-light">
+	<a class="navbar-brand" href="main.php">Bloggster</a>
 			<ul class="left">
 				<li><a href="<?php echo $urlPrefix;?>modules/post/newPost.php">New
 						Post</a></li>
@@ -35,6 +34,4 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 				
 			</div>
 
-		</div>
 	</nav>
-</div>

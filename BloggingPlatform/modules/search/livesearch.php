@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 include_once('../helpers/db.php');
 
 
-$query = "SELECT * FROM ";
+$query = "";
 //get the filter parameter from URL
 $filter = $_GET["filter"];
 // get the query text from URL
@@ -27,18 +27,19 @@ if(1 == 1) {
     if($filter == 'post') {
         $query = "SELECT ID,Title,Content,Votes FROM " . $filter . " WHERE MATCH (Title,Content) AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
     } else if ($filter == 'blog') {
-        $query = "SELECT ID,Name,Description FROM " . $filter . ' WHERE MATCH (Name,Description)
-        AGAINST (' . $text . ' WITH QUERY EXPANSION)';
+        $query = "SELECT ID,Name,Description FROM " . $filter . " WHERE MATCH (Name,Description)
+        AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
     } else {
-        $query = "SELECT FirstName,LastName,Email FROM " . $filter . ' WHERE MATCH (FirstName,LastName,Email)
-        AGAINST (' . $text . ' WITH QUERY EXPANSION)';
+        $query = "SELECT FirstName,LastName,Email FROM " . $filter . " WHERE MATCH (FirstName,LastName,Email)
+        AGAINST ('" . $text . "' WITH QUERY EXPANSION)";
     }
     
     $resultSet = $conn->query($query);
     
-    if($conn->error) {
+    if($conn->error || ($resultSet->num_rows == 0)) {
         echo $conn->error;
         echo 'No Results';
+        die;
     }
     
     echo "Got to here";

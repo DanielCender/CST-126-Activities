@@ -47,23 +47,16 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 <div class="container">
 <div class="row">
 <div class="col-md-3"></div>
-
 <div class="col-md-9">
-<form class="form-inline">
-<div class="col-md-3">
+<form class="form-inline" onSubmit="return false">
   <select class="form-control" id="filterSelector" name="Filter" required>
   <option>Filter</option>
   <option value="post">Posts</option>
   <option value="blog">Blogs</option>
   <option value="user">Users</option>
 </select>
-   </div>
-   <div class="col-md-8">
     <input type="text" class="form-control" id="searchText" aria-describedby="searchQuery" placeholder="Enter search">
-   </div>
-   <div class="col-md-1">
     <button type="submit" class="btn btn-primary mb-2" onClick="searchForData()">Search</button>
-    </div>
 </form>
 </div>
 <div class="col-md-3"></div>
