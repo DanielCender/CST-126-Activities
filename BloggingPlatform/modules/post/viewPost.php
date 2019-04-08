@@ -19,6 +19,7 @@ $postId = $_GET["id"];
 
 $conn = dbConnect();
 $post = $conn->query("SELECT post.ID,post.Title,post.Content,post.Votes,CONCAT(user.FirstName, ' ',user.LastName) AS Author FROM post INNER JOIN user WHERE post.Author = user.ID AND post.ID = $postId");
+$comments = $conn->query("SELECT comment.Text,CONCAT(user.FirstName, ' ',user.LastName) AS User FROM comment INNER JOIN user WHERE comment.User = user.ID AND comment.Post = " . $postId);
 
 $row = $post->fetch_assoc();
 
@@ -27,6 +28,21 @@ $title = $row["Title"];
 $content = $row["Content"];
 $author = $row["Author"];
 $votes = $row["Votes"];
+
+
+$comment_table = "";
+
+while($row = $comments->fetch_assoc()) {
+    $comment_table = $comment_table . '<div class="row"><div class="col-sm-3"></div><div class="col-sm-6 mx-auto"><div class="card" style="width: 18rem;">
+    <div class="card-header">' . $row['User'] . '</div>
+    <div class="card-body">
+    <p class="card-text">' . $row['Text'] . '</p>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-3"></div>
+    </div>';
+}
 
 $conn->close();
 ?>
@@ -68,8 +84,25 @@ $conn->close();
 		</div>
 	</div>
 	
-	<div>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+	<form onSubmit="">
+		<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Leave a comment</span>
+  </div>
+  <textarea class="form-control" onchange="languageFilter(this.value)" id="comment" aria-label="With textarea"></textarea>
+</div>
+		<button type="button" id="submit_btn" onclick="saveComment()" class="btn btn-outline-primary">Submit</button>
+		</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	
+	<div id="comments">
 	<!--  INCLUDE ALL COMMENTS ON THIS POST -->
+	<?php echo $comment_table;?>
 	</div>
 </div>
 
@@ -95,7 +128,30 @@ xmlhttp.onreadystatechange = function() {
 }
 
 function saveComment() {
+	var commentText = document.getElementById("comment").value;
+	console.log(commentText);
+	var postId = document.getElementById("postId").innerHTML;
 	
+	if(commentText.length == 0) {
+		return;
+	}
+	
+//	If there are values to be queried
+	if (window.XMLHttpRequest) {
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp=new XMLHttpRequest();
+	} else {  // code for IE6, IE5
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState==4 && this.status==200) {
+	      document.getElementById("comments").innerHTML=this.responseText;
+	    }
+	  }
+	  var httpURL = "postComment.php?text=" + commentText + "&postId=" + postId;
+	  xmlhttp.open("GET", httpURL, true);
+	  xmlhttp.send();
 }
 
 </script>

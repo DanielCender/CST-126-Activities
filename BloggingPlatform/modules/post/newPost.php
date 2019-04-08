@@ -18,16 +18,8 @@ $userId = getUserId();
 <title>Write A Post</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="../helpers/languageFilter.js"></script>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="../../css/materialize.min.css"
-	media="screen,projection" />
-
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
 <?php include('../header/_header.php'); ?>
@@ -42,7 +34,7 @@ $userId = getUserId();
 
 <div class="form_comp__section">
 <label>Content</label>
-<input type="text" name="content" value="" onchange="languageFilter(this.value)">
+<textarea name="content" onchange="languageFilter(this.value)"><?php echo $content; ?></textarea>
 </div>
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="action" value="save">
@@ -53,8 +45,9 @@ $userId = getUserId();
 </form>
 
 
-<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="../../js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

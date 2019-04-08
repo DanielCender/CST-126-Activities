@@ -60,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `blog`.`activity3_users` (
   `PASSWORD` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -77,7 +76,6 @@ CREATE TABLE IF NOT EXISTS `blog`.`activity4_users` (
   `PASSWORD` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -99,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`address` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `ID1_idx` ON `blog`.`address` (`USER_ID` ASC) VISIBLE;
+CREATE INDEX `ID1` ON `blog`.`address` (`USER_ID` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -181,6 +179,22 @@ CREATE FULLTEXT INDEX `Name` ON `blog`.`blog` (`Name`, `Description`) VISIBLE;
 
 
 -- -----------------------------------------------------
+-- Table `blog`.`comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog`.`comment` ;
+
+CREATE TABLE IF NOT EXISTS `blog`.`comment` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Text` TEXT NOT NULL,
+  `Post` INT(11) NOT NULL,
+  `User` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 15
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `blog`.`post`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `blog`.`post` ;
@@ -197,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`post` (
     FOREIGN KEY (`Author`)
     REFERENCES `blog`.`user` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8;
 
 CREATE INDEX `Author` ON `blog`.`post` (`Author` ASC) VISIBLE;
@@ -216,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`vote` (
   `Post` INT(11) NOT NULL,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 CREATE UNIQUE INDEX `User` ON `blog`.`vote` (`User` ASC, `Post` ASC) VISIBLE;

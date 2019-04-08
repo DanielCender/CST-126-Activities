@@ -38,7 +38,7 @@ $userId = getUserId();
 
 <?php
 
-$sqlQuery = "SELECT post.ID,post.Title,post.Content,CONCAT(user.FirstName, ' ',user.LastName) AS Author FROM post INNER JOIN user WHERE user.ID = post.Author";
+$sqlQuery = "SELECT post.ID,post.Title,post.Content,Votes,CONCAT(user.FirstName, ' ',user.LastName) AS Author FROM post INNER JOIN user WHERE user.ID = post.Author";
 
 $resultSet = $conn->query($sqlQuery);
 
