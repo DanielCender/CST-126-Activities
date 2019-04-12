@@ -83,7 +83,7 @@ body {
       </div>
 
 
-      <div class="col-sm-8">
+      <div class="col-sm-8" style="overflow-x:auto;">
       <table class="table">
       <thead>
       <tr>

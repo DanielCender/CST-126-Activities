@@ -23,6 +23,7 @@ $sqlQuery = "SELECT user.ID, user.FirstName, user.LastName, user.RoleID FROM use
 
 $result = $conn->query($sqlQuery);
 
+print_r($result);
 
 $rowsReturned = $result->num_rows;
 
