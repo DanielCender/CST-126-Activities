@@ -54,7 +54,7 @@ $conn->close();
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="id" value="<?php echo $postId; ?>">
 
-<button class="btn btn-outline-danger" type="submit" name="action" value="delete">Delete</button>
+<button class="btn btn-outline-danger" type="submit" name="action" onclick="return confirm('Do you really want to delete this post?');" value="delete">Delete</button>
 <button id="submit_btn" class="btn btn-outline-primary" type="submit" name="action" value="update">Update</button>
 </div>
 </form>

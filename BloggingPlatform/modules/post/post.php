@@ -9,6 +9,7 @@
 include "../helpers/db.php";
 
 $conn = dbConnect();
+$host  = $_SERVER['HTTP_HOST'];
 
 $title = $_POST['title'];
 $author = $_POST['author'];
@@ -26,7 +27,6 @@ switch($_POST['action']) {
         if($conn->error) {
             echo $conn->error;
         }
-        $host  = $_SERVER['HTTP_HOST'];
         header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
     case 'update':
@@ -39,17 +39,23 @@ switch($_POST['action']) {
         if($conn->error) {
             echo $conn->error;
         }
-        $host  = $_SERVER['HTTP_HOST'];
         header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/yourPosts.php"); exit; // Redirect to posts list
         break;
     case 'delete':
         $id = $_POST['id'];
-        $result = $conn->query("DELETE FROM post WHERE ID = '$id'");
-        if($conn->error) {
-            echo $conn->error;
+        if($conn->query("DELETE FROM comment WHERE Post = $id") == TRUE) {
+            if($conn->query("DELETE FROM vote WHERE Post = $id") == TRUE) {
+                $conn->query("DELETE FROM post WHERE ID = $id");           
+            }
         }
-        $host  = $_SERVER['HTTP_HOST'];
-        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
+        if($conn->error) {
+            echo '<h2 align="center">Post not deleted.</h2>';
+            echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/post/yourPosts.php';\",1500);</script>";
+        }
+        
+        echo '<h2 align="center">Post Deleted Successfully!</h2>';
+        echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/post/yourPosts.php';\",1500);</script>";
+//         header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
     default:
         echo 'no action defined';

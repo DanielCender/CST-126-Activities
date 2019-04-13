@@ -47,7 +47,7 @@ while($row = $resultSet->fetch_assoc()) {
     $id = $row["ID"];
     $title = $row["Title"];
     $votes = $row["Votes"];
-    echo "<span class=\"list-group-item list-group-item-action\"><a href='viewPost.php?id=$id'>$title - Votes: $votes</a> - <a href='editPost.php?postId=$id'>Edit</a> - <a href='post.php?action=delete&id=$id'>Delete</a></span>";
+    echo "<span class=\"list-group-item list-group-item-action\"><a href='viewPost.php?id=$id'>$title - Votes: $votes</a> - <a href='editPost.php?postId=$id'>Edit</a></span>";
 }
 echo "</div>";
 $conn->close();
