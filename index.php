@@ -21,6 +21,7 @@
 <h2><a href="activity4/index.html">Activity4</a></h2>
 <h2><a href="activity5/index.php">Activity5</a></h2>
 <h2><a href="activity6/index.php">Activity6</a></h2>
+<h2><a href="activity7/index.php">Activity7</a></h2>
 <h2><a href="BloggingPlatform/index.php">Blogging Platform</a></h2>
 </div>
 </body>
