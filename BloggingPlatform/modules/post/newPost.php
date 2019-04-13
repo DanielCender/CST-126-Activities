@@ -29,12 +29,12 @@ $userId = getUserId();
 	<div class="form_comp">
 <div class="form_comp__section">
 <label>Title</label>
-<input type="text" name="title" value="" onchange="languageFilter(this.value)">
+<input type="text" name="title" value="" onchange="languageFilter(this.value)" required>
 </div>
 
 <div class="form_comp__section">
 <label>Content</label>
-<textarea name="content" onchange="languageFilter(this.value)"><?php echo $content; ?></textarea>
+<textarea name="content" onchange="languageFilter(this.value)" required><?php echo $content; ?></textarea>
 </div>
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="action" value="save">

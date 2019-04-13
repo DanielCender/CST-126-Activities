@@ -92,7 +92,7 @@ $conn->close();
   <div class="input-group-prepend">
     <span class="input-group-text">Leave a comment</span>
   </div>
-  <textarea class="form-control" onchange="languageFilter(this.value)" id="comment" aria-label="With textarea"></textarea>
+  <textarea class="form-control" onchange="languageFilter(this.value)" id="comment" aria-label="With textarea" required></textarea>
 </div>
 		<button type="button" id="submit_btn" onclick="saveComment()" class="btn btn-outline-primary">Submit</button>
 		</form>

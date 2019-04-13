@@ -14,7 +14,7 @@ $userId = getUserId();
 $postId = $_GET["postId"];
 
 $conn = dbConnect();
-$post = $conn->query("SELECT * FROM post WHERE ID = $postId");
+$post = $conn->query("SELECT * FROM post WHERE ID = $postId AND Author = $userId");
 
 $row = $post->fetch_assoc();
 
@@ -40,12 +40,12 @@ $conn->close();
 	<div class="form_comp">
 <div class="form_comp__section">
 <label>Title</label>
-<input type="text" name="title" value="<?php echo $title; ?>" onchange="languageFilter(this.value)">
+<input type="text" name="title" value="<?php echo $title; ?>" onchange="languageFilter(this.value)" required>
 </div>
 
 <div class="form_comp__section">
 <label>Content</label>
-<textarea name="content" onchange="languageFilter(this.value)"><?php echo $content; ?></textarea>
+<textarea name="content" onchange="languageFilter(this.value)" required><?php echo $content; ?></textarea>
 </div>
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="id" value="<?php echo $postId; ?>">

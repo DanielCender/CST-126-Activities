@@ -6,9 +6,10 @@
  * Date: March 30, 2019
  * Synopsis: This page fragment displays the search box, the action box, and the profile menu.
  */
-require('../../config.php');
 $host = $_SERVER['HTTP_HOST'];
 $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
+session_start();
+$shouldShow = $_SESSION['USER_ID'];
 ?>
 
 <style>
@@ -23,15 +24,25 @@ body {
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="<?php echo $urlPrefix;?>modules/post/newPost.php">New Post <span class="sr-only">(current)</span></a>
-      </li>
+    <?php if($shouldShow): ?>
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo $urlPrefix;?>modules/blog/newBlog.php">New Blog</a>
+        <a class="nav-link" href="<?php echo $urlPrefix;?>modules/post/newPost.php">New Blog Post</a>
+      </li>
+     <?php endif; ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo $urlPrefix;?>modules/post/posts.php">All Posts</a>
+      </li>
+      <?php if($shouldShow): ?>
+      <li class="nav-item">
+      	<a class="nav-link" href="<?php echo $urlPrefix; ?>modules/post/yourPosts.php">Your Posts</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a>
       </li>
+      <?php endif; ?>
     </ul>
+     <form action="<?php echo $urlPrefix; ?>modules/login/logoutHandler.php" class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Log Out</button>
+    </form>
   </div>
 </nav>

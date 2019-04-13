@@ -10,11 +10,6 @@ include "../helpers/db.php";
 
 $conn = dbConnect();
 
-if(!isset($_POST['title']) || !isset($_POST['content'])) {
-    echo 'Post entry is invalid';
-    die();
-}
-
 $title = $_POST['title'];
 $author = $_POST['author'];
 $content = $_POST['content'];
@@ -22,6 +17,10 @@ $content = $_POST['content'];
 
 switch($_POST['action']) {
     case 'save':
+        if(!isset($title) || !isset($content)) {
+            echo 'Post entry is invalid';
+            die();
+        }
         //Save post to table
         $result = $conn->query("INSERT INTO post(title, author, content) VALUES ('$title', '$author', '$content')"); 
         if($conn->error) {
@@ -31,13 +30,17 @@ switch($_POST['action']) {
         header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
         break;
     case 'update':
+        if(!isset($title) || !isset($content)) {
+            echo 'Post entry is invalid';
+            die();
+        }
         $id = $_POST["id"];
         $result = $conn->query("UPDATE post SET Title = '$title', Author = '$author', Content = '$content' WHERE ID = $id");
         if($conn->error) {
             echo $conn->error;
         }
         $host  = $_SERVER['HTTP_HOST'];
-        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/posts.php"); exit; // Redirect to posts list
+        header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/post/yourPosts.php"); exit; // Redirect to posts list
         break;
     case 'delete':
         $id = $_POST['id'];
