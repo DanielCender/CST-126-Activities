@@ -23,27 +23,35 @@ $userId = getUserId();
 </head>
 <body>
 <?php include('../header/_header.php'); ?>
-<h3>Compose Your Latest Post Here</h3>
-<form action="post.php" method="POST">
+
+<div class="container">
+<h3 align="center">Compose Your Latest Post Here</h3>
+<div class="row">
+<div class="col-lg-3"></div>
+<form class="col-lg-6" action="post.php" method="POST">
 	
-	<div class="form_comp">
-<div class="form_comp__section">
-<label>Title</label>
-<input type="text" name="title" value="" onchange="languageFilter(this.value)" required>
+	<div class="">
+<label for="title">Title</label>
+<div class="input-group mb-3">
+<input type="text" name="title" id="title" class="form-control" onchange="languageFilter(this.value)" required>
 </div>
 
-<div class="form_comp__section">
-<label>Content</label>
-<textarea name="content" onchange="languageFilter(this.value)" required><?php echo $content; ?></textarea>
+
+<label for="content">Content</label>
+<div class="input-group mb-3">
+<textarea name="content" id="content" class="form-control" onchange="languageFilter(this.value)" required></textarea>
 </div>
+
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="action" value="save">
 
-<button id="submit_btn" class="btn_submit" type="submit" name="Create New">Create</button>
+<button id="submit_btn" class="btn btn-primary" type="submit" name="Create New">Create</button>
 </div>
 
 </form>
-
+<div class="col-lg-3"></div>
+</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

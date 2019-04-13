@@ -35,25 +35,32 @@ $conn->close();
 </head>
 <body>
 <?php include('../header/_header.php'); ?>
-<form action="post.php" method="POST">
+<div class="container">
+<h3 align="center">Edit Post</h3>
+<div class="row">
+<div class="col-lg-3"></div>
+<form class="col-lg-6" action="post.php" method="POST">
 	
-	<div class="form_comp">
-<div class="form_comp__section">
-<label>Title</label>
-<input type="text" name="title" value="<?php echo $title; ?>" onchange="languageFilter(this.value)" required>
+	<div class="">
+<label for="title">Title</label>
+<div class="input-group mb-3">
+<input type="text" id="title" name="title" class="form-control" value="<?php echo $title; ?>" onchange="languageFilter(this.value)" required>
 </div>
 
-<div class="form_comp__section">
-<label>Content</label>
-<textarea name="content" onchange="languageFilter(this.value)" required><?php echo $content; ?></textarea>
+<label for="content">Content</label>
+<div class="input-group mb-3">
+<textarea id="content" name="content" class="form-control" onchange="languageFilter(this.value)" required><?php echo $content; ?></textarea>
 </div>
 <input type="hidden" name="author" value="<?php echo $userId; ?>">
 <input type="hidden" name="id" value="<?php echo $postId; ?>">
 
-<button id="submit_btn" class="btn_submit" type="submit" name="action" value="update">Update</button>
-<button class="btn_submit" type="submit" name="action" value="delete">Delete</button>
+<button class="btn btn-outline-danger" type="submit" name="action" value="delete">Delete</button>
+<button id="submit_btn" class="btn btn-outline-primary" type="submit" name="action" value="update">Update</button>
 </div>
 </form>
+<div class="col-lg-3"></div>
+</div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

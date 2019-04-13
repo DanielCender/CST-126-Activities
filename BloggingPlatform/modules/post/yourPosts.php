@@ -38,7 +38,7 @@ $userId = getUserId();
 
 <?php
 
-$sqlQuery = "SELECT post.ID,post.Title,post.Content,Votes,CONCAT(user.FirstName, ' ',user.LastName) AS Author FROM post INNER JOIN user WHERE user.ID = post.Author AND post.Author = $userId";
+$sqlQuery = "SELECT post.ID,post.Title,post.Content,Votes FROM post INNER JOIN user WHERE user.ID = post.Author AND post.Author = $userId";
 
 $resultSet = $conn->query($sqlQuery);
 
@@ -46,7 +46,6 @@ echo "<div class=\"list-group\" style='margin-top:50px'>";
 while($row = $resultSet->fetch_assoc()) {
     $id = $row["ID"];
     $title = $row["Title"];
-    $author = $row["Author"];
     $votes = $row["Votes"];
     echo "<span class=\"list-group-item list-group-item-action\"><a href='viewPost.php?id=$id'>$title - Votes: $votes</a> - <a href='editPost.php?postId=$id'>Edit</a> - <a href='post.php?action=delete&id=$id'>Delete</a></span>";
 }
