@@ -23,22 +23,25 @@ $sqlQuery = "SELECT user.ID, user.FirstName, user.LastName, user.RoleID FROM use
 
 $result = $conn->query($sqlQuery);
 
-print_r($result);
-
 $rowsReturned = $result->num_rows;
 
+$host  = $_SERVER['HTTP_HOST'];
 //  Until more pages are built to redirect to, this will suffice to express a successful login attempt.
 if($rowsReturned === 1) {
     echo "Login was successful";
     $row = $result->fetch_assoc();
     saveUserId($row['ID']); // Store ID in HTTP Session
-    $host  = $_SERVER['HTTP_HOST'];
     header("Location: http://$host/CST-126-Projects/BloggingPlatform/main.php"); exit; // Redirect to main dashboard
 } elseif($rowsReturned === 0) {
-    echo "Login failed";
+    echo '<h2 align="center">Login Failed</h2>';
+    echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
 } elseif ($rowsReturned > 1){
-    echo "There are multiple users registered.";
+    echo '<h2 align="center">There are multiple users registered with that email. Try again.</h2>';
+    echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
     echo $conn->error;
+    
+    // Destroy session to enable log in next try
+    unset($_SESSION['USER_ID']);
     session_destroy();
 }
 $conn->close();
