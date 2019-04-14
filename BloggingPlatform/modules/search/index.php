@@ -35,8 +35,7 @@ $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
 <form class="form-inline" onSubmit="return false">
   <select class="form-control" id="filterSelector" name="Filter" onchange="searchForData()" required>
   <option value="filter">Filter</option>
-  <option value="post">Posts</option>
-  <option value="blog">Blogs</option>
+  <option value="post">Blog Posts</option>
   <option value="user">Users</option>
 </select>
     <input type="text" class="form-control" onkeyup="searchForData()" id="searchText" aria-describedby="searchQuery" placeholder="Enter search">

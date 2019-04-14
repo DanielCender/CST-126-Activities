@@ -40,6 +40,9 @@ body {
         <a class="nav-link" href="<?php echo $urlPrefix; ?>modules/admin/index.php">Admin</a>
       </li>
       <?php endif; ?>
+      <li class="nav-item">
+      	<a class="nav-link" href="<?php echo $urlPrefix; ?>modules/search/index.php">Search</a>
+      </li>
     </ul>
      <form action="<?php echo $urlPrefix; ?>modules/login/logoutHandler.php" class="form-inline my-2 my-lg-0">
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Log Out</button>
