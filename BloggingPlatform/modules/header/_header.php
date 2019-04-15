@@ -7,7 +7,7 @@
  * Synopsis: This page fragment displays buttons for quick navigation between pages.
  */
 $host = $_SERVER['HTTP_HOST'];
-$urlPrefix = "http://$host/BloggingPlatform/"; //CST-126-Projects/
+$urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/"; //CST-126-Projects/
 session_start();
 $shouldShow = isset($_SESSION['USER_ID']);
 ?>
