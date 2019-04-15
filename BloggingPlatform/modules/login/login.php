@@ -36,7 +36,7 @@ if ($rowsReturned === 1) {
 } elseif ($rowsReturned === 0) {
     echo '<h2 align="center">Login Failed</h2>';
     echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
-} elseif ($rowsReturned > 1) {
+} else {
     echo '<h2 align="center">There are multiple users registered with that email. Try again.</h2>';
     echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
     echo $conn->error;
