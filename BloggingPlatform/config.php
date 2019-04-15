@@ -8,23 +8,22 @@
  */
 
 // Root
-define('DIR_BASE',      dirname( __FILE__ ) . '/');
+define('DIR_BASE', dirname(__FILE__) . '/');
 
 // Modules
-define('DIR_MODULES',    DIR_BASE . 'modules/');
+define('DIR_MODULES', DIR_BASE . 'modules/');
 
 // Module subs
-define('DIR_POST',     DIR_MODULES . 'post/');
-define('DIR_SEARCH',      DIR_MODULES . 'search/');
-define('DIR_HELPERS',      DIR_MODULES . 'helpers/');
+define('DIR_POST', DIR_MODULES . 'post/');
+define('DIR_SEARCH', DIR_MODULES . 'search/');
+define('DIR_HELPERS', DIR_MODULES . 'helpers/');
 define('DIR_REGISTRATION', DIR_MODULES . 'registration/');
 define('DIR_LOGIN', DIR_MODULES . 'login/');
 define('DIR_ADMIN', DIR_MODULES . 'admin/');
 
 // Global Fragments
-define('VIEW_HEADER',   DIR_MODULES . 'header/_header.php');
-// define('VIEW_NAVIGATION',   DIR_MODULES . 'navigation.php');
-// define('VIEW_FOOTER',   DIR_MODULES . 'footer.php');
-
+define('VIEW_HEADER', DIR_MODULES . 'header/_header.php');
+// define('VIEW_NAVIGATION', DIR_MODULES . 'navigation.php');
+// define('VIEW_FOOTER', DIR_MODULES . 'footer.php');
 
 ?>

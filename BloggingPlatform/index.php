@@ -1,62 +1,47 @@
 <!-- 
 /*
- * Project: CST-126-Blog-Project v.0.2
- * Module Name: UserRegistration v.0.2
+ * Project: CST-126-Blog-Project v.0.3
+ * Module Name: BlogPost v.0.1
  * Author: Daniel Cender
- * Date: March 10, 2019
- * Synopsis: This HTML file is the entry point into the blogging platform web app. It links to the other top level modules of the application.
+ * Date: March 17, 2019
+ * Synopsis: This page is served only when user has been authenticated through login.
  */
  -->
- <?php 
- $host  = $_SERVER['HTTP_HOST'];
- include_once("http://$host/CST-126-Projects/BloggingPlatform/modules/helpers/funcs.php");
- $urlPrefix = "http://$host/CST-126-Projects/BloggingPlatform/";
- // Some global variables for including files properly
- define('URL_PREFIX', $urlPrefix);
- 
- ?>
+
+<?php
+require_once ('config.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Blogging Platform</title>
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
-	media="screen,projection" />
-
-<!--Let browser know website is optimized for mobile-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<title>Dashboard</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-	<div class="row">
-		<div class="col m3"></div>
-		<div class="col s12 m6">
-			<div class="card light-blue">
-				<div class="card-content white-text">
-					<span class="card-title">BlogoSphere Inc.</span>
-
-					<div class="card-action">
-						<h2>
-							<a href="modules/registration/index.html">Register</a>
-						</h2>
-						<h2>
-							<a href="modules/login/index.html">Login</a>
-						</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col m3"></div>
-	</div>
-
-	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+<?php include(VIEW_HEADER); ?>
+<div class="container">
+<?php include '_getTopPosts.php';?>
+</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
-
-
 </html>

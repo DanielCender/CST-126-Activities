@@ -13,13 +13,13 @@ $password = (getenv('CLEARDB_DATABASE_PASSWORD', true) ?: getenv('CLEARDB_DATABA
 $db = (getenv('CLEARDB_DATABASE_DB', true) ?: getenv('CLEARDB_DATABASE_DB')) ?: 'blog';
 $host = (getenv('CLEARDB_DATABASE_HOST', true) ?: getenv('CLEARDB_DATABASE_HOST')) ?: 'localhost';
 
-
-function dbConnect() {
+function dbConnect()
+{
     global $host, $user, $password, $db;
     // Open MySQL connection
     $conn = new mysqli($host, $user, $password, $db);
-    
-    if($conn->connect_error) {
+
+    if ($conn->connect_error) {
         echo $conn->connect_error;
     }
     return $conn;

@@ -11,14 +11,14 @@
  * 3. Add the id of "submit_btn" to the submit button for the form
  */
 
-var languageFilter = function(string){
+var languageFilter = function(string) {
 	var bannedWordRegex = /^.*(fuck|damn|hell|shit|hell|frick|bitch|cunt|retard|f..k|f.ck|d.mn|sh.t).*?/gmi;
 
-	if(bannedWordRegex.test(string)) {
+	if (bannedWordRegex.test(string)) {
 		document.getElementById("submit_btn").disabled = true;
-		window.alert('You have entered language that breaks the blog code of conduct. Please revise your draft.');
+		window
+				.alert('You have entered language that breaks the blog code of conduct. Please revise your draft.');
 	} else {
 		document.getElementById("submit_btn").disabled = false;
 	}
 };
-

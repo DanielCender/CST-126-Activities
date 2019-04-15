@@ -16,7 +16,7 @@ $firstName = $lastName = $userPassword = $email = "";
 // Open MySQL connection
 $conn = dbConnect();
 
-if($conn->connect_error) {
+if ($conn->connect_error) {
     echo $conn->connect_error;
 }
 
@@ -32,24 +32,24 @@ VALUES ('$firstName', '$lastName', '$email', '$userPassword', 1)"; // Assign Rol
 
 // Check email not on blacklist
 $blacklistResult = $conn->query($sqlBlacklistCheck);
-if (!$blacklistResult) {
+if (! $blacklistResult) {
     die('Invalid query: ' . $conn->error);
 }
 $row = $blacklistResult->fetch_array();
 
-$host  = $_SERVER['HTTP_HOST'];
+$host = $_SERVER['HTTP_HOST'];
 // Check if blacklist table has any entries matching attempted registration
-if($row[0] == 0) {
-if ($conn->query($sqlInsert) === TRUE) {
-   
-//     header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html"); exit; // Redirect to login
-    echo '<h2 align="center">New user account created successfully</h2>';
-    echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
-} else {
-    // Email already taken, display error and redirect
-    echo '<h2 align="center">Error experienced: That email has already been used!</h2>';
-    echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/registration/index.html';\",1500);</script>";
-}
+if ($row[0] == 0) {
+    if ($conn->query($sqlInsert) === TRUE) {
+
+        // header("Location: http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html"); exit; // Redirect to login
+        echo '<h2 align="center">New user account created successfully</h2>';
+        echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/login/index.html';\",1500);</script>";
+    } else {
+        // Email already taken, display error and redirect
+        echo '<h2 align="center">Error experienced: That email has already been used!</h2>';
+        echo "<script>setTimeout(\"location.href = 'http://$host/CST-126-Projects/BloggingPlatform/modules/registration/index.html';\",1500);</script>";
+    }
 } else {
     // Email blacklisted, display error and redirect
     echo '<h2 align="center">That email has been blacklisted for abusive conduct.</h2>';
